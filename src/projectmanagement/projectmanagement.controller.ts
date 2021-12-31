@@ -17,6 +17,11 @@ export class ProjectmanagementController {
     return this.projectmanagementService.findAll();
   }
 
+  @Get('/find-by-mentorID/:id')
+  findByMentorID(@Param('id') id : string) {
+    return this.projectmanagementService.findByMentorID(id);
+  }
+
   @Get('/find-one/:id')
   findOne(@Param('id') id: string) {
     return this.projectmanagementService.findOne(id);

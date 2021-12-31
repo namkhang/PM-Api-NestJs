@@ -26,6 +26,14 @@ export class ProjectmanagementService {
     }
   }
 
+  async findByMentorID(id : string){
+      let data = await this.projectModel.find({mentorID : id})
+      return {
+        success : true ,
+        data
+      }
+  }
+
   async findOne(id: string) {    
       return {
         success : true ,
