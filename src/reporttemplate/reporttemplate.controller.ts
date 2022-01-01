@@ -8,9 +8,11 @@ export class ReporttemplateController {
   constructor(private readonly reporttemplateService: ReporttemplateService) {}
 
   @Post("/create-reporttemplate")
-  create(@Body() createReporttemplateDto: CreateReporttemplateDto) {
-    // createReporttemplateDto.description = "Report Template"
-    return this.reporttemplateService.create(createReporttemplateDto);
+  create(@Body() body: any) {
+    let date = new Date()
+    let createAt = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    body.createAt = createAt
+    return this.reporttemplateService.create(body);
   }
 
   @Get('/find-all')

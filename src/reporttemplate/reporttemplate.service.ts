@@ -10,8 +10,8 @@ export class ReporttemplateService {
 
   constructor(@InjectModel(Report_Templates.name) private reportTemplateModel: Model<ReportTemplateDocument>) {}
 
-  async create(createReporttemplateDto: CreateReporttemplateDto) {
-    const newReportTemplate = await new this.reportTemplateModel(createReporttemplateDto).save()
+  async create(body: any) {
+    const newReportTemplate = await new this.reportTemplateModel(body).save()
     return {
       success : true,
       data : newReportTemplate
