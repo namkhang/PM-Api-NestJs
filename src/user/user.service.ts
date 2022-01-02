@@ -11,6 +11,21 @@ export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
 
+
+  async login(crential : any) {
+    
+    let check = await this.userModel.findOne({...crential})
+    if (check){
+        return true
+    }
+    else{
+          return false
+    }
+
+  }
+
+
+
   async create(createUserDto: CreateUserDto) {
     let newUser = await new this.userModel(createUserDto).save()
     return {
