@@ -30,33 +30,39 @@ export class UserController {
   }
 
 
-  @Get("/check-token")
-  async checkToken(@Req() req : Request){
-    if (req.headers.authorization){
-      try {
+  // @Get("/check-token")
+  // async checkToken(@Req() req : Request){
+  //   if (req.headers.authorization){
+  //     try {
         
-          let token = req.headers.authorization.split(" ")[1]
-          let data  = await this.jwtService.verifyAsync(token)
-          return {
-            success : true ,
-            data
-          }
-      }
-      catch (err){
-        return {
-          success : false ,
-          message : "Token Invalid"
-        }
-      }
-    }
-    else{
-      return {
-        success : false ,
-        message : "Token does not exist"
-      }
-    }
+  //         let token = req.headers.authorization.split(" ")[1]
+  //         let data  = await this.jwtService.verifyAsync(token)
+  //         return {
+  //           success : true ,
+  //           data
+  //         }
+  //     }
+  //     catch (err){
+  //       return {
+  //         success : false ,
+  //         message : "Token Invalid"
+  //       }
+  //     }
+  //   }
+  //   else{
+  //     return {
+  //       success : false ,
+  //       message : "Token does not exist"
+  //     }
+  //   }
 
       
+  // }
+
+  
+  @Get('/find-user-by-id/:id')
+  findUserByID(@Param('id') id : string) {
+    return this.userService.findUserByID(id);
   }
 
 

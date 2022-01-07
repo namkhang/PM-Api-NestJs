@@ -6,11 +6,15 @@ import { ProjectmanagementModule } from './projectmanagement/projectmanagement.m
 import { ReporttemplateModule } from './reporttemplate/reporttemplate.module';
 import { UserModule } from './user/user.module';
 import { ReportModule } from './report/report.module';
+import { MentorModule } from './mentor/mentor.module';
+import { AdminModule } from './admin/admin.module';
+import { ChatModule } from './chat/chat.module';
+import { JwtModule } from '@nestjs/jwt';
 
 
 @Module({
   imports: [ProjectmanagementModule, MongooseModule.forRoot('mongodb://localhost/ProjectManagement'), 
-  ReporttemplateModule, UserModule, ReportModule 
+  ReporttemplateModule, UserModule, ReportModule, MentorModule, AdminModule, ChatModule 
 ],
   controllers: [AppController],
   providers: [AppService],
