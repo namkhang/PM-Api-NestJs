@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, Req, Res, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import {JwtService} from "@nestjs/jwt";
-import { Request } from 'express';
+import {Request, Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('user')
 export class UserController {
@@ -27,6 +28,17 @@ export class UserController {
         message : 'Login Failed'
       }
     }
+  }
+
+
+  
+
+  @Post('/upload')
+  @UseInterceptors(FileInterceptor('image'))
+  async upload(@Req() req : Request , @Res() res : Response , @UploadedFile() file) {
+          res.type("xlsx")
+          res.send(file.buffer)
+          
   }
 
 
