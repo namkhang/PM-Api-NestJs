@@ -59,6 +59,20 @@ export class UserService {
   }
 
 
+  async searchUser(name : string) {
+      const dataUser = await this.userModel.find()
+      const dataMentor = await this.mentorModel.find()
+      const dataAdmin = await this.adminModel.find()
+      const data = [...dataUser , ...dataAdmin , ...dataMentor]
+      const result = data.filter(i => i.fullname.toLowerCase().includes(name.toLowerCase()))
+      return {
+        success : true ,
+        data : result
+      }
+}
+ 
+
+
   async findOne(id: string) {
     return {
       success : true ,

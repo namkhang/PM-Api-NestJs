@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put, Req, Res, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, Req, Res, UseInterceptors, UploadedFile, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -77,11 +77,18 @@ export class UserController {
     return this.userService.findUserByID(id);
   }
 
+  @Get('/search')
+  searchUser(@Query('name') name : string) {
+    return this.userService.searchUser(name);
+  }
+
 
   @Post('/create-user')
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
+
+
 
   @Get('/find-all')
   findAll() {
