@@ -3,6 +3,7 @@ import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { CreateCommentPostDto } from './dto/create-comment-post.dto';
+import { CreateChatDetailDto } from 'src/chat/dto/create-chat-detail.dto';
 
 @Controller('post')
 export class PostController {
@@ -23,6 +24,8 @@ export class PostController {
     }
     return this.postService.create(data);
   }
+
+
 
 
   @Post('/create-comment-post/:id')

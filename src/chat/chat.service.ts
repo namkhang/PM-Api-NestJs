@@ -19,6 +19,16 @@ export class ChatService {
     }
   }
 
+  async createChatDetail(createChatDto: CreateChatDto , id :string) {
+    let chat = (await this.chatModel.findOne({_id : id})).chat
+    chat.push(createChatDto)
+    await this.chatModel.updateOne({_id : id} , {chat})
+    return {
+      success : true ,
+      data : await this.chatModel.findOne({_id : id})
+    }
+  }
+
   async findAll() {
     return {
       success : true ,
