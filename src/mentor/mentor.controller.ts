@@ -3,7 +3,9 @@ import { MentorService } from './mentor.service';
 import { CreateMentorDto } from './dto/create-mentor.dto';
 import { UpdateMentorDto } from './dto/update-mentor.dto';
 import { AdminService } from 'src/admin/admin.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("Mentor")
 @Controller('mentor')
 export class MentorController {
   constructor(private readonly mentorService: MentorService) {}

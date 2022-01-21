@@ -4,7 +4,10 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { CreateCommentPostDto } from './dto/create-comment-post.dto';
 import { CreateChatDetailDto } from 'src/chat/dto/create-chat-detail.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags("Post")
 @Controller('post')
 export class PostController {
   constructor(private readonly postService: PostService) {}

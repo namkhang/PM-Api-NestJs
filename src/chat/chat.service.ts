@@ -36,7 +36,17 @@ export class ChatService {
     }
   }
 
-  
+  async findContentChat(id: string , content : string){
+      let dataChat = await this.chatModel.findOne({_id : id})
+      let result = dataChat.chat.filter(i => i.chat_content.toLowerCase().includes(content.toLowerCase()))
+      return {
+        success : true ,
+        data : result
+      }
+
+  }
+
+
   async findByUserID(id : string) {
     let data = await this.chatModel.find()
     let result = data.filter(i => i.userInfor.includes(id))

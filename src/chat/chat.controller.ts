@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AdminService } from 'src/admin/admin.service';
 import { testFunction } from 'src/helper/test';
 import { ChatService } from './chat.service';
@@ -6,6 +7,7 @@ import { CreateChatDetailDto } from './dto/create-chat-detail.dto';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { UpdateChatDto } from './dto/update-chat.dto';
 
+@ApiTags("Chat")
 @Controller('chat')
 export class ChatController {
   // constructor(private readonly chatService: ChatService , private readonly adminService: AdminService) {}
@@ -19,6 +21,13 @@ export class ChatController {
   @Get('/find-all')
   findAll() {
     return this.chatService.findAll();
+
+  }
+
+  
+  @Get('/find-content-chat/:id')
+  findContentChat(@Param('id') id : string , @Query("content") content : string) {
+    return this.chatService.findContentChat(id , content);
 
   }
 
